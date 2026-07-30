@@ -4,14 +4,13 @@ import { useLocation } from 'react-router-dom';
 import { OrderCardProps } from './type';
 import { TIngredient } from '@utils-types';
 import { OrderCardUI } from '../ui/order-card';
-
-const maxIngredients = 6;
+import { useSelector } from '../../services/store';
+import { selectIngredients } from '@selectors';
+import { MAX_SHOWN_INGREDIENTS } from '../../utils/constants';
 
 export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   const location = useLocation();
-
-  /** TODO: взять переменную из стора */
-  const ingredients: TIngredient[] = [];
+  const ingredients = useSelector(selectIngredients);
 
   const orderInfo = useMemo(() => {
     if (!ingredients.length) return null;
@@ -27,11 +26,11 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
 
     const total = ingredientsInfo.reduce((acc, item) => acc + item.price, 0);
 
-    const ingredientsToShow = ingredientsInfo.slice(0, maxIngredients);
+    const ingredientsToShow = ingredientsInfo.slice(0, MAX_SHOWN_INGREDIENTS);
 
     const remains =
-      ingredientsInfo.length > maxIngredients
-        ? ingredientsInfo.length - maxIngredients
+      ingredientsInfo.length > MAX_SHOWN_INGREDIENTS
+        ? ingredientsInfo.length - MAX_SHOWN_INGREDIENTS
         : 0;
 
     const date = new Date(order.createdAt);
@@ -50,7 +49,7 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   return (
     <OrderCardUI
       orderInfo={orderInfo}
-      maxIngredients={maxIngredients}
+      maxIngredients={MAX_SHOWN_INGREDIENTS}
       locationState={{ background: location }}
     />
   );

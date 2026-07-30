@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { forgotPasswordApi } from '@api';
 import { ForgotPasswordUI } from '@ui-pages';
+import { RESET_PASSWORD_KEY } from '../../utils/constants';
 
 export const ForgotPassword: FC = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ export const ForgotPassword: FC = () => {
     setError(null);
     forgotPasswordApi({ email })
       .then(() => {
-        localStorage.setItem('resetPassword', 'true');
+        localStorage.setItem(RESET_PASSWORD_KEY, 'true');
         navigate('/reset-password', { replace: true });
       })
       .catch((err) => setError(err));
