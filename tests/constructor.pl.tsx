@@ -16,7 +16,7 @@ const ORDER_MODAL_TEXT = 'идентификатор заказа';
 const MOCK_ACCESS_TOKEN = 'Bearer mock-access-token';
 const MOCK_REFRESH_TOKEN = 'mock-refresh-token';
 
-const MOCK_ORDER_NUMBER = 4646;
+const MOCK_ORDER_NUMBER = 12345;
 const MOCK_USER_NAME = 'Тестовый пользователь';
 
 type TIngredientFixture = {

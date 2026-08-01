@@ -88,7 +88,7 @@ export const mockNewOrderResponse = {
     },
     createdAt: '2026-07-12T12:00:00.000Z',
     updatedAt: '2026-07-12T12:00:00.000Z',
-    number: 4646,
+    number: 12345,
     price: 2934
   }
 };
